@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COMP344-ASS1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type = "text/javascript">
+    function validation(){
+
+      var postcode = document.forms["RegForm"]["postcode"];
+      var email = document.forms["RegForm"]["email"];
+      var card =  document.forms["RegForm"]["card"];
+      var expDate = document.forms["RegForm"]["expDate"];
+
+      var today = new Date();
+      var choseDate = document.getElementById("choseDate").value;
+      var PchoseDate = new Date(choseDate);
+
+      if (postcode.value == "" || postcode.value.length!=4) {
+        window.alert("Please enter a valid postcode.");
+        postcode.focus();
+        return false;
+      } else if (email.value == "" || email.value.indexOf("@")<1 || email.value.lastIndexOf(".")-email.value.indexOf("@")<2){
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+      } else if (card.value == "" || card.value.length!=10) {
+        window.alert("Please enter a valid credit card.");
+        card.focus();
+        return false;
+      } else if (today >= PchoseDate) {
+        window.alert("Your credit card has been expired.");
+        expDate.focus();
+        return false;
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+   /* Add padding to containers */
+    .container {
+      padding: 16px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password],input[type=number]{
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus, input[type=password]:focus, input[type=number]:focus{
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit button */
+    .registerbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+      color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+<div class="ID" id="MyID">
+   <ul>
+     <li><b>COMP344 Assignment 1,2019</b></li>
+     <li><b>Ye Shen</b></li>
+     <li><b>45132658</b></li>
+   </ul>
+</div>
+</header>
+
+<form name="RegForm" method="post" action="registerUser.php" onSubmit="return validation()">
+  <div class="container">
+    <h1>Register</h1>
+    <p style="color:red">Please fill in this form to create an account.</p>
+    <hr>
+
+    <label for="firstName"><b>First Name</b></label>
+    <input type="text" placeholder="Enter your First Name" name="firstName" required>
+
+	  <label for="lastName"><b>Last Name</b></label>
+    <input type="text" placeholder="Enter your Last Name" name="lastName" required>
+
+    <label for="userName"><b>User Name</b></label>
+    <input type="text" placeholder="Enter your User Name" name="username" required>
+
+	  <label for="email"><b>Email</b></label>
+    <input type="text" id="email" placeholder="Enter your Email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+	  <h2>Address</h2>
+	  <label for="streetNo"><b>Street number</b></label>
+    <input type="text" placeholder="Enter Street number" name="streetNo" required>
+
+	  <label for="streetName"><b>Street name</b></label>
+    <input type="text" placeholder="Enter Street name" name="streetName" required>
+
+	  <label for="suburb"><b>Suburb/City</b></label>
+    <input type="text" placeholder="Enter Suburb/City" name="surburb" required>
+
+	  <label for="state"><b>State</b></label>
+    <input type="text" placeholder="Enter State" name="state" required>
+
+    <label for="postcode"><b>Postcode</b></label>
+    <input type="number" id ="postcode" placeholder="Enter Postcode:4 digit" name="postcode" required>
+
+    <label for="card"><b>Credit Card</b></label>
+    <input type="number" id ="card" placeholder="Enter Credit Card Number:10 digit" name="card" required>
+
+	  <label for="expDate"><b>Expire Date</b></label>
+    <input type="date" id="choseDate" name="expDate" required>
+
+	  <h2>Children</h2>
+	  <label for="children1"><b>Child name</b></label>
+    <input type="text" id ="child1" placeholder="Enter child name" name="child1" required>
+    
+    <label for="children1"><b>Class</b></label>
+    <input type="text" id ="child1class" placeholder="Enter child class" name="child1class" required>
+
+	  <label for="children2"><b>Child name (opional)</b></label>
+    <input type="text" id ="child2" placeholder="Enter child name" name="child2">
+    
+    <label for="children2"><b>Class (opional)</b></label>
+    <input type="text" id ="child2class" placeholder="Enter child class" name="child2class">
+
+	  <label for="children3"><b>Child name (opional)</b></label>
+    <input type="text" id ="child3" placeholder="Enter child name" name="child3">
+    
+    <label for="children3"><b>Class (opional)</b></label>
+	  <input type="text" id ="child3class" placeholder="Enter child class" name="child3class">
+
+
+    <hr>
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+    <input type="submit" id= "submitcheck" class="registerbtn" value="Register">
+  </div>
+
+  <div class="container signin">
+    <p>Already have an account? <a href="index.php">Sign in</a>.</p>
+  </div>
+</form>
+
+</body>
+
+</html>
